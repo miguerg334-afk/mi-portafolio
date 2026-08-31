@@ -1,0 +1,589 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #030712;
+  color: #f3f4f6;
+  overflow-x: hidden;
+}
+
+/* Canvas fijo en el fondo */
+#webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Capa de contenido superpuesta */
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Secciones para dar altura al scroll */
+.panel {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 10%;
+}
+
+.section-1 { justify-content: flex-start; }
+.section-2 { justify-content: flex-end; }
+.section-3 { justify-content: flex-start; }
+.section-4 { justify-content: center; }
+
+/* Tarjetas con estilo de cristal (Glassmorphism) */
+.glass-card {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
+  padding: 2.5rem;
+  border-radius: 12px;
+  max-width: 450px;
+  width: 100%;
+}
+
+.tag {
+  font-family: monospace;
+  color: #38bdf8;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+}
+
+h1, h2 {
+  font-size: 2rem;
+  margin: 0.5rem 0 1rem 0;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+p, li {
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+ul {
+  list-style-type: '⚡ ';
+  padding-left: 1.2rem;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: #38bdf8;
+  border: 1px solid #38bdf8;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #38bdf8;
+  color: #030712;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+}
+
+/* Modificación específica para la primera tarjeta (más grande) */
+.glass-card.hero-card {
+  max-width: 600px; /* Incrementado desde 450px */
+}
+
+/* Header con foto de perfil */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #38bdf8;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+/* Ajuste responsivo para pantallas pequeñas */
+@media (max-width: 600px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+/* Estado base de todas las tarjetas */
+.glass-card {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
+  padding: 2.5rem;
+  border-radius: 12px;
+  max-width: 450px;
+  width: 100%;
+  
+  /* Transición suave para todos los efectos del hover */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease,
+              background 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto HOVER principal */
+.glass-card:hover {
+  /* Se eleva ligeramente y aumenta un poco el tamaño */
+  transform: translateY(-8px) scale(1.02);
+  
+  /* Intensifica el borde y el resplandor neón cyan */
+  border-color: rgba(56, 189, 248, 0.8);
+  box-shadow: 0 10px 35px rgba(56, 189, 248, 0.35),
+              0 0 15px rgba(168, 85, 247, 0.25); /* Toque púrpura de fondo */
+  background: rgba(15, 23, 42, 0.8);
+}
+
+/* Destello / Barrido de luz cibernético al pasar el mouse */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(56, 189, 248, 0.15),
+    transparent
+  );
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
+
+.glass-card:hover::before {
+  left: 100%;
+}
+
+/* Animación adicional para la foto de perfil al hacer hover en la primera card */
+.hero-card:hover .profile-img {
+  transform: scale(1.05) rotate(3deg);
+  border-color: #a855f7; /* Cambia a púrpura en hover */
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.7);
+  transition: all 0.4s ease;
+}
+
+/* Navbar Fijo Sci-Fi */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  background: rgba(3, 7, 18, 0.75);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+  z-index: 10; /* Por encima de la capa de contenido */
+}
+
+.logo {
+  font-family: monospace;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+  letter-spacing: 2px;
+}
+
+.navbar nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.navbar nav a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+/* Efecto hover en los enlaces del navbar */
+.navbar nav a:hover {
+  color: #38bdf8;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+}
+
+.navbar nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  transition: width 0.3s ease;
+}
+
+.navbar nav a:hover::after {
+  width: 100%;
+}
+
+/* Tamaño ajustado para dar cabida a la consola */
+.glass-card.tech-card {
+  max-width: 650px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.status-indicator {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #22c55e;
+  letter-spacing: 1px;
+}
+
+.blink {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.section-desc {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Grilla de módulos */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.skill-module {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-left: 3px solid #38bdf8;
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.skill-module:hover {
+  background: rgba(15, 23, 42, 0.75);
+  border-color: rgba(56, 189, 248, 0.4);
+  border-left-color: #a855f7; /* Cambia a púrpura en hover */
+  transform: translateX(5px);
+}
+
+.module-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.module-title h3 {
+  font-size: 0.9rem;
+  font-family: monospace;
+  color: #f3f4f6;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* Chips de tecnología */
+.tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.tech-chip {
+  font-family: monospace;
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.tech-chip.highlight {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.skill-module:hover .tech-chip {
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+/* Barras de Diagnóstico / Medidores Cyberpunk */
+.skill-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skill-bar .fill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #a855f7);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+  border-radius: 2px;
+}
+
+.f-95 { width: 95%; }
+.f-90 { width: 90%; }
+.f-88 { width: 88%; }
+.f-85 { width: 85%; }
+
+/* Botón específico de GitHub */
+.projects-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.btn-github:hover {
+  background: #38bdf8;
+  color: #030712;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-github svg {
+  transition: transform 0.3s ease;
+}
+
+.btn-github:hover svg {
+  transform: scale(1.1);
+}
+
+/* Tarjeta de Contacto ampliada */
+.glass-card.contact-card {
+  max-width: 580px;
+}
+
+.status-indicator.comms-online {
+  color: #38bdf8;
+}
+
+/* Lista vertical de canales de comunicación */
+.contact-channels {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1.25rem;
+}
+
+/* Tarjeta individual de canal */
+.channel-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.85rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.channel-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  transition: all 0.3s ease;
+}
+
+.channel-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.channel-name {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  letter-spacing: 1px;
+}
+
+.channel-detail {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f3f4f6;
+  margin-top: 2px;
+}
+
+.channel-card .arrow {
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: #64748b;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover específico por red */
+
+/* Email Hover */
+.channel-card.email:hover {
+  border-color: rgba(234, 67, 53, 0.6);
+  background: rgba(234, 67, 53, 0.08);
+  transform: translateX(6px);
+}
+.channel-card.email:hover .channel-icon {
+  background: rgba(234, 67, 53, 0.2);
+  color: #ea4335;
+  box-shadow: 0 0 12px rgba(234, 67, 53, 0.4);
+}
+.channel-card.email:hover .arrow {
+  color: #ea4335;
+  transform: translateX(4px);
+}
+
+/* WhatsApp Hover */
+.channel-card.whatsapp:hover {
+  border-color: rgba(37, 211, 102, 0.6);
+  background: rgba(37, 211, 102, 0.08);
+  transform: translateX(6px);
+}
+.channel-card.whatsapp:hover .channel-icon {
+  background: rgba(37, 211, 102, 0.2);
+  color: #25d366;
+  box-shadow: 0 0 12px rgba(37, 211, 102, 0.4);
+}
+.channel-card.whatsapp:hover .arrow {
+  color: #25d366;
+  transform: translateX(4px);
+}
+
+/* Instagram Hover */
+.channel-card.instagram:hover {
+  border-color: rgba(228, 64, 95, 0.6);
+  background: rgba(228, 64, 95, 0.08);
+  transform: translateX(6px);
+}
+.channel-card.instagram:hover .channel-icon {
+  background: rgba(228, 64, 95, 0.2);
+  color: #e4405f;
+  box-shadow: 0 0 12px rgba(228, 64, 95, 0.4);
+}
+.channel-card.instagram:hover .arrow {
+  color: #e4405f;
+  transform: translateX(4px);
+}
+
+/* Footer de la tarjeta */
+.card-footer {
+  margin-top: 1.25rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.response-time {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #38bdf8;
+  letter-spacing: 1px;
+}
+
+/* Botón Selector de Idioma en el Navbar */
+.lang-btn {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+.lang-code {
+  color: #64748b;
+  transition: color 0.3s ease;
+}
+
+.lang-code.active {
+  color: #38bdf8;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+}
+
+.lang-divider {
+  color: rgba(255, 255, 255, 0.2);
+}
