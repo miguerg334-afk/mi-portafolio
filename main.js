@@ -171,3 +171,24 @@ langToggleBtn.addEventListener('click', () => {
     }
   });
 });
+
+// 7. Lógica del Menú Hamburguesa Responsivo
+const menuToggle = document.getElementById('menu-toggle');
+const navMenu = document.getElementById('nav-menu');
+const navLinks = document.querySelectorAll('#nav-menu a');
+
+if (menuToggle && navMenu) {
+  // Abrir / Cerrar menú al hacer clic en el botón hamburguesa
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('is-active');
+    navMenu.classList.toggle('is-active');
+  });
+
+  // Cerrar el menú automáticamente al hacer clic en un enlace de navegación
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('is-active');
+      navMenu.classList.remove('is-active');
+    });
+  });
+}
