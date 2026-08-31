@@ -587,3 +587,54 @@ ul {
 .lang-divider {
   color: rgba(255, 255, 255, 0.2);
 }
+
+/* AJUSTES RESPONSIVOS PARA MÓVILES */
+@media (max-width: 768px) {
+  /* Navbar adaptable */
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  .navbar nav ul {
+    gap: 0.8rem;
+  }
+
+  .navbar nav a {
+    font-size: 0.8rem;
+  }
+
+  /* Paneles con altura flexible para evitar solapamientos */
+  .panel {
+    height: auto;
+    min-height: 100vh;
+    padding: 5rem 1rem 3rem 1rem; /* Espacio superior para no chocar con el navbar */
+    justify-content: center !important;
+  }
+
+  /* Ajustes de tarjetas */
+  .glass-card,
+  .glass-card.hero-card,
+  .glass-card.tech-card,
+  .glass-card.contact-card {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+
+  /* Ajuste de fuentes */
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  /* Canales de contacto en pantalla pequeña */
+  .channel-card {
+    padding: 0.75rem;
+  }
+  
+  .channel-detail {
+    font-size: 0.85rem;
+  }
+}
