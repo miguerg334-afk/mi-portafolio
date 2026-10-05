@@ -97,9 +97,29 @@ ul {
   box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
 }
 
-/* Modificación específica para la primera tarjeta (más grande) */
-.glass-card.hero-card {
-  max-width: 600px; /* Incrementado desde 450px */
+/* Hero abierto: sin fondo, borde ni contenedor de tarjeta */
+.hero-content {
+  width: min(760px, 100%);
+  padding: 2rem 0;
+}
+
+.hero-content h1 {
+  margin: 0.35rem 0 0.75rem;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.hero-content .subtitle {
+  color: #e2e8f0;
+  font-family: monospace;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  letter-spacing: 0.08em;
+}
+
+.hero-content > p {
+  max-width: 650px;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
 }
 
 /* Header con foto de perfil */
@@ -184,7 +204,7 @@ ul {
 }
 
 /* Animación adicional para la foto de perfil al hacer hover en la primera card */
-.hero-card:hover .profile-img {
+.hero-content:hover .profile-img {
   transform: scale(1.05) rotate(3deg);
   border-color: #a855f7; /* Cambia a púrpura en hover */
   box-shadow: 0 0 25px rgba(168, 85, 247, 0.7);
@@ -690,7 +710,6 @@ ul {
 
   /* Ajustes de tarjetas */
   .glass-card,
-  .glass-card.hero-card,
   .glass-card.tech-card,
   .glass-card.contact-card {
     max-width: 100%;
@@ -700,6 +719,18 @@ ul {
   /* Ajuste de fuentes */
   h1 {
     font-size: 1.5rem;
+  }
+
+  .hero-content {
+    padding: 0;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(3rem, 18vw, 5rem);
+  }
+
+  .hero-content > p {
+    font-size: 1rem;
   }
 
   h2 {
