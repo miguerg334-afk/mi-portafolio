@@ -36,10 +36,12 @@ body {
   padding: 0 10%;
 }
 
-.section-1 { justify-content: flex-start; }
-.section-2 { justify-content: flex-end; }
-.section-3 { justify-content: flex-start; }
-.section-4 { justify-content: center; }
+.section-1,
+.section-2,
+.section-3,
+.section-4 {
+  justify-content: center;
+}
 
 /* Tarjetas con estilo de cristal (Glassmorphism) */
 .glass-card {
@@ -99,7 +101,7 @@ ul {
 
 /* Hero abierto: sin fondo, borde ni contenedor de tarjeta */
 .hero-content {
-  width: min(760px, 100%);
+  width: min(900px, 100%);
   padding: 2rem 0;
 }
 
@@ -279,7 +281,7 @@ ul {
 
 /* Composiciones abiertas: dejan respirar y ver el fondo 3D */
 .section-content {
-  width: min(780px, 100%);
+  width: min(900px, 100%);
   position: relative;
   padding: 1.5rem 0;
   text-shadow: 0 2px 14px rgba(3, 7, 18, 0.95);
@@ -420,7 +422,7 @@ ul {
 .f-85 { width: 85%; }
 
 .projects-content {
-  width: min(920px, 100%);
+  width: min(900px, 100%);
 }
 
 .projects-content > p {
@@ -430,8 +432,8 @@ ul {
 
 .project-showcase {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-  gap: 3rem;
+  grid-template-columns: 400px minmax(260px, 1fr);
+  gap: 3.5rem;
   align-items: center;
   margin-top: 2rem;
 }
@@ -440,7 +442,7 @@ ul {
   position: relative;
   display: block;
   width: 100%;
-  max-width: 520px;
+  max-width: 400px;
   padding: 2rem 0.55rem 0.55rem;
   background: rgba(3, 7, 18, 0.58);
   border: 1px solid rgba(56, 189, 248, 0.38);
