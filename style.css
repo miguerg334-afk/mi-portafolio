@@ -102,13 +102,43 @@ ul {
 /* Hero abierto: sin fondo, borde ni contenedor de tarjeta */
 .hero-content {
   width: min(900px, 100%);
-  padding: 2rem 0;
+  padding: 2.5rem 0 1.5rem;
+  position: relative;
+}
+
+.hero-kicker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 0.9rem;
+  margin-bottom: 2.25rem;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.28);
+}
+
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #94a3b8;
+  font-family: monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.11em;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+  animation: pulse 1.5s infinite;
 }
 
 .hero-content h1 {
-  margin: 0.35rem 0 0.75rem;
-  font-size: clamp(3.5rem, 8vw, 7rem);
-  line-height: 0.9;
+  margin: 0 0 0.85rem;
+  font-size: clamp(4.5rem, 9vw, 8rem);
+  line-height: 0.82;
   letter-spacing: -0.06em;
 }
 
@@ -119,34 +149,165 @@ ul {
   letter-spacing: 0.08em;
 }
 
-.hero-content > p {
-  max-width: 650px;
+.hero-description {
+  max-width: 620px;
+  margin-top: 1.5rem;
   font-size: clamp(1rem, 1.5vw, 1.15rem);
 }
 
 /* Header con foto de perfil */
 .profile-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
   align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 1.2rem;
+  gap: 3rem;
+  margin-bottom: 2.4rem;
+}
+
+.portrait-wrap {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  display: grid;
+  place-items: center;
 }
 
 .profile-img {
-  width: 120px;
-  height: 120px;
+  width: 146px;
+  height: 146px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #38bdf8;
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 28px rgba(56, 189, 248, 0.38);
+  position: relative;
+  z-index: 1;
+}
+
+.portrait-orbit {
+  position: absolute;
+  inset: 0;
+  border: 1px dashed rgba(168, 85, 247, 0.65);
+  border-radius: 50%;
+  animation: orbit-spin 18s linear infinite;
+}
+
+.portrait-orbit::before,
+.portrait-orbit::after {
+  content: '';
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+}
+
+.portrait-orbit::before {
+  top: 12px;
+  right: 22px;
+}
+
+.portrait-orbit::after {
+  bottom: 18px;
+  left: 15px;
+  background: #a855f7;
+  box-shadow: 0 0 10px #a855f7;
+}
+
+@keyframes orbit-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait-orbit {
+    animation: none;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.75rem;
+}
+
+.hero-btn {
+  padding: 0.75rem 1.1rem;
+  border: 1px solid rgba(56, 189, 248, 0.6);
+  color: #e2e8f0;
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-btn-primary {
+  color: #030712;
+  background: #38bdf8;
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.25);
+}
+
+.hero-btn:hover {
+  color: #ffffff;
+  background: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.32);
+}
+
+.hero-btn-secondary {
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+.hero-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: #64748b;
+  font-family: monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+}
+
+.hero-stack span:not(:last-child)::after {
+  content: '/';
+  margin: 0 1rem;
+  color: #38bdf8;
 }
 
 /* Ajuste responsivo para pantallas pequeñas */
 @media (max-width: 600px) {
-  .profile-header {
-    flex-direction: column;
+  .hero-kicker {
     align-items: flex-start;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .profile-header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .portrait-wrap {
+    width: 126px;
+    height: 126px;
+  }
+
+  .profile-img {
+    width: 114px;
+    height: 114px;
+  }
+
+  .hero-stack {
+    gap: 0.65rem 1rem;
+  }
+
+  .hero-stack span:not(:last-child)::after {
+    display: none;
   }
 }
 
