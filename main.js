@@ -1,4 +1,15 @@
-// 1. Escena, Cámara y Renderizador
+// 1. Scroll suave con Lenis
+const lenis = new Lenis({
+  autoRaf: true,
+  anchors: {
+    offset: -70,
+  },
+  lerp: 0.075,
+  smoothWheel: true,
+  wheelMultiplier: 0.9,
+});
+
+// 2. Escena, Cámara y Renderizador
 const canvas = document.querySelector("#webgl");
 const scene = new THREE.Scene();
 
@@ -17,7 +28,7 @@ const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// 2. Creación del Túnel de Partículas
+// 3. Creación del Túnel de Partículas
 const count = 6000;
 const geometry = new THREE.BufferGeometry();
 const positions = new Float32Array(count * 3);
@@ -58,7 +69,7 @@ const material = new THREE.PointsMaterial({
 const particleTunnel = new THREE.Points(geometry, material);
 scene.add(particleTunnel);
 
-// 3. Control del Scroll
+// 4. Control del Scroll
 let scrollProgress = 0;
 let targetZ = 0;
 
@@ -69,14 +80,14 @@ window.addEventListener("scroll", () => {
   targetZ = -scrollProgress * 80;
 });
 
-// 4. Redimensionamiento Responsive
+// 5. Redimensionamiento Responsive
 window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// 5. Bucle de Animación
+// 6. Bucle de Animación
 const clock = new THREE.Clock();
 
 function animate() {
@@ -94,7 +105,7 @@ function animate() {
 
 animate();
 
-// 6. Diccionario y Lógica Multilenguaje
+// 7. Diccionario y Lógica Multilenguaje
 const translations = {
   es: {
     nav_start: "Inicio",
@@ -172,7 +183,7 @@ langToggleBtn.addEventListener('click', () => {
   });
 });
 
-// 7. Lógica del Menú Hamburguesa Responsivo
+// 8. Lógica del Menú Hamburguesa Responsivo
 const menuToggle = document.getElementById('menu-toggle');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('#nav-menu a');
