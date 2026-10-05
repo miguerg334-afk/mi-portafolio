@@ -426,52 +426,88 @@ ul {
 .f-88 { width: 88%; }
 .f-85 { width: 85%; }
 
-/* Botón específico de GitHub */
-.projects-actions {
-  margin-top: 2rem;
-  display: flex;
-  gap: 1rem;
-}
-
-.btn-github {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: transparent;
-  color: #38bdf8;
-  border: 0;
-  border-bottom: 1px solid rgba(56, 189, 248, 0.65);
-  padding: 0.75rem 0;
-  border-radius: 0;
-  text-decoration: none;
-  font-family: monospace;
-  font-weight: bold;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-}
-
-.btn-github:hover {
-  background: transparent;
-  color: #ffffff;
-  box-shadow: 0 8px 14px -12px rgba(56, 189, 248, 0.9);
-  transform: translateX(6px);
-}
-
-.btn-github svg {
-  transition: transform 0.3s ease;
-}
-
-.btn-github:hover svg {
-  transform: scale(1.1);
-}
-
 .projects-content {
-  width: min(700px, 100%);
+  width: min(1050px, 100%);
 }
 
 .projects-content > p {
   max-width: 620px;
   font-size: 1.05rem;
+}
+
+.project-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.55fr);
+  gap: 2.5rem;
+  align-items: end;
+  margin-top: 2rem;
+}
+
+.project-media {
+  display: block;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(56, 189, 248, 0.5);
+  overflow: hidden;
+}
+
+.project-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  filter: saturate(0.85) brightness(0.86);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.project-media:hover img {
+  transform: scale(1.025);
+  filter: saturate(1) brightness(1);
+}
+
+.project-copy {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.project-type {
+  color: #38bdf8;
+  font-family: monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+}
+
+.project-copy h3 {
+  margin: 0.7rem 0;
+  color: #f8fafc;
+  font-family: monospace;
+  font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+  letter-spacing: 0.03em;
+}
+
+.project-copy p {
+  font-size: 0.95rem;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1.25rem;
+  padding: 0.65rem 0;
+  color: #38bdf8;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.65);
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: color 0.3s ease, gap 0.3s ease;
+}
+
+.project-link:hover {
+  gap: 1.2rem;
+  color: #ffffff;
 }
 
 .contact-content {
@@ -772,7 +808,8 @@ ul {
   }
 
   .skills-grid,
-  .contact-channels {
+  .contact-channels,
+  .project-showcase {
     grid-template-columns: 1fr;
   }
 
@@ -782,6 +819,10 @@ ul {
 
   .contact-channels {
     gap: 1.25rem;
+  }
+
+  .project-showcase {
+    gap: 1.5rem;
   }
 
   /* Ajuste de fuentes */
