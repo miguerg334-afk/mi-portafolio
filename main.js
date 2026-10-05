@@ -3,10 +3,15 @@ const lenis = new Lenis({
   autoRaf: true,
   anchors: {
     offset: -70,
+    duration: 1.35,
   },
-  lerp: 0.075,
+  duration: 1.35,
+  easing: (t) => 1 - Math.pow(1 - t, 4),
   smoothWheel: true,
-  wheelMultiplier: 0.9,
+  wheelMultiplier: 0.85,
+  syncTouch: true,
+  syncTouchLerp: 0.08,
+  touchInertiaMultiplier: 22,
 });
 
 // 2. Escena, Cámara y Renderizador
