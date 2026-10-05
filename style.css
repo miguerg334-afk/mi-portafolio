@@ -74,8 +74,15 @@ p, li {
 }
 
 ul {
-  list-style-type: '⚡ ';
+  list-style-type: none;
   padding-left: 1.2rem;
+}
+
+.module-title .icon {
+  color: #38bdf8;
+  font-family: monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
 }
 
 .btn {

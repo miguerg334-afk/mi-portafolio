@@ -115,10 +115,10 @@ const translations = {
     proj_title: "PROYECTOS DESTACADOS",
     proj_desc: "Explora mis desarrollos de código abierto, bots de automatización, sistemas backend y aplicaciones interactivas directamente en mi perfil de GitHub.",
     contact_tag: "// TRANSMISSION_MODULE",
-    contact_title: "📬 ESTABLECER CONTACTO",
+    contact_title: "ESTABLECER CONTACTO",
     contact_desc: "¿Tienes una propuesta, un proyecto en mente o quieres colaborar? Elige tu canal preferido para iniciar la transmisión:",
     email_label: "EMAIL DIRECTO",
-    response_time: "⏱ RESPUESTA ESTIMADA: < 24 HRS"
+    response_time: "RESPUESTA ESTIMADA: < 24 HRS"
   },
   en: {
     nav_start: "Home",
@@ -139,10 +139,10 @@ const translations = {
     proj_title: "FEATURED PROJECTS",
     proj_desc: "Explore my open-source developments, automation bots, backend systems, and interactive applications directly on my GitHub profile.",
     contact_tag: "// TRANSMISSION_MODULE",
-    contact_title: "📬 GET IN TOUCH",
+    contact_title: "GET IN TOUCH",
     contact_desc: "Have a proposal, project in mind, or want to collaborate? Choose your preferred channel to start transmission:",
     email_label: "DIRECT EMAIL",
-    response_time: "⏱ ESTIMATED RESPONSE: < 24 HRS"
+    response_time: "ESTIMATED RESPONSE: < 24 HRS"
   }
 };
 
