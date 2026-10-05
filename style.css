@@ -430,23 +430,43 @@ ul {
   font-size: 1.05rem;
 }
 
+.github-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: 720px;
+  margin-top: 1.15rem;
+}
+
+.github-cta p {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
 .github-profile-link {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  margin-top: 0.9rem;
-  color: #94a3b8;
+  flex-shrink: 0;
+  padding: 0.75rem 1rem;
+  color: #030712;
+  background: #38bdf8;
+  border: 1px solid #38bdf8;
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.28);
   font-family: monospace;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-decoration: none;
-  transition: color 0.3s ease, gap 0.3s ease;
+  transition: color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .github-profile-link:hover {
-  gap: 0.9rem;
-  color: #38bdf8;
+  color: #f8fafc;
+  background: transparent;
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.42);
+  transform: translateY(-2px);
 }
 
 .project-showcase {
@@ -867,6 +887,12 @@ ul {
 
   .project-showcase {
     gap: 1.5rem;
+  }
+
+  .github-cta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.9rem;
   }
 
   .project-media {
