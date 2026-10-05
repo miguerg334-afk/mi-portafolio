@@ -430,6 +430,25 @@ ul {
   font-size: 1.05rem;
 }
 
+.github-profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.9rem;
+  color: #94a3b8;
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: color 0.3s ease, gap 0.3s ease;
+}
+
+.github-profile-link:hover {
+  gap: 0.9rem;
+  color: #38bdf8;
+}
+
 .project-showcase {
   display: grid;
   grid-template-columns: 400px minmax(260px, 1fr);
