@@ -215,7 +215,7 @@ h1, h2 {
 }
 
 p, li {
-  color: #94a3b8;
+  color: #cbd5e1;
   line-height: 1.6;
 }
 
@@ -264,7 +264,7 @@ ul {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  color: #94a3b8;
+  color: #cbd5e1;
   font-family: monospace;
   font-size: 0.7rem;
   letter-spacing: 0.11em;
@@ -410,7 +410,7 @@ ul {
   gap: 0;
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  color: #64748b;
+  color: #aebed1;
   font-family: monospace;
   font-size: 0.68rem;
   letter-spacing: 0.12em;
@@ -552,7 +552,7 @@ ul {
 }
 
 .navbar nav a {
-  color: #94a3b8;
+  color: #cbd5e1;
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
@@ -634,7 +634,7 @@ ul {
 }
 
 .section-desc {
-  color: #94a3b8;
+  color: #cbd5e1;
   font-size: 1rem;
   margin-bottom: 2rem;
 }
@@ -693,7 +693,7 @@ ul {
 
 .tech-chip:not(:last-child)::after {
   content: ' /';
-  color: #475569;
+  color: #aebed1;
 }
 
 .tech-chip.highlight {
@@ -797,7 +797,7 @@ ul {
 }
 
 .project-media::before {
-  content: 'LIVE_PREVIEW / colegiosantagema.edu.ve';
+  content: attr(data-preview);
   position: absolute;
   top: 0.7rem;
   left: 0.75rem;
@@ -931,7 +931,7 @@ ul {
 .channel-name {
   font-family: monospace;
   font-size: 0.75rem;
-  color: #94a3b8;
+  color: #cbd5e1;
   letter-spacing: 1px;
 }
 
@@ -945,7 +945,7 @@ ul {
 .channel-card .arrow {
   font-family: monospace;
   font-size: 1.2rem;
-  color: #64748b;
+  color: #aebed1;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -1036,7 +1036,7 @@ ul {
 }
 
 .lang-code {
-  color: #64748b;
+  color: #aebed1;
   transition: color 0.3s ease;
 }
 
@@ -1047,7 +1047,7 @@ ul {
 }
 
 .lang-divider {
-  color: rgba(255, 255, 255, 0.2);
+  color: #aebed1;
 }
 
 /* AJUSTES RESPONSIVOS PARA MÓVILES */
@@ -1360,4 +1360,15 @@ ul {
     padding: 0.7rem 1rem;
     text-align: center;
   }
+}
+
+/* La sección crece con el número de proyectos. */
+.panel.section-3 {
+  height: auto;
+  min-height: 100vh;
+  padding-top: 6rem;
+  padding-bottom: 5rem;
+}
+.project-showcase + .project-showcase {
+  margin-top: 3.5rem;
 }
