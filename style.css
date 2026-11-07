@@ -890,7 +890,7 @@ ul {
 /* Lista vertical de canales de comunicación */
 .contact-channels {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
@@ -980,22 +980,6 @@ ul {
 }
 .channel-card.whatsapp:hover .arrow {
   color: #25d366;
-  transform: translateX(4px);
-}
-
-/* Instagram Hover */
-.channel-card.instagram:hover {
-  border-color: #e4405f;
-  background: transparent;
-  transform: translateY(-4px);
-}
-.channel-card.instagram:hover .channel-icon {
-  background: transparent;
-  color: #e4405f;
-  box-shadow: none;
-}
-.channel-card.instagram:hover .arrow {
-  color: #e4405f;
   transform: translateX(4px);
 }
 
